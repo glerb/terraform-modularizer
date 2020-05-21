@@ -45,8 +45,8 @@ def terraform_mv(shell_args):
     """Moves the state of the Terraform objects to the module"""
 
     print("Trying '", end='')
-    for term in shell_args:                                                    
-        print(term, end=' ')                                                   
+    for term in shell_args:
+        print(term, end=' ')
     print("'\n")
 
     try:
@@ -54,10 +54,10 @@ def terraform_mv(shell_args):
             args=shell_args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
             timeout=10, check=True, text=True).stdout)
         return 1
-    except subprocess.CalledProcessError as e:                                 
-        print(                                                                 
+    except subprocess.CalledProcessError as e:
+        print(
             'The Terraform CLI says:',
-            e.stdout)                                         
+            e.stdout)
             #str(e.stderr,'utf-8'))
 
 
@@ -76,30 +76,30 @@ def modularize(resources_file, module):
 
     hcl_objects_parsed = parsehcl(resources_file)
 
-    for hcl_object in hcl_objects:                                             
-        for hcl_object_types in hcl_objects_parsed.get(hcl_object, []):                     
-            for hcl_object_type in hcl_object_types.keys():                                      
-                if hcl_object == hcl_objects[0]: 
+    for hcl_object in hcl_objects:
+        for hcl_object_types in hcl_objects_parsed.get(hcl_object, []):
+            for hcl_object_type in hcl_object_types.keys():
+                if hcl_object == hcl_objects[0]:
                     for resource_name in hcl_object_types[hcl_object_type].keys():
-                        shell_args = [                                                 
-                            'terraform',                                               
-                            'state',                                                   
-                            'mv',                                                      
-                            f'{hcl_object_type}.{resource_name}',                             
+                        shell_args = [
+                            'terraform',
+                            'state',
+                            'mv',
+                            f'{hcl_object_type}.{resource_name}',
                             f'module.{module}']
                         terraform_mv(shell_args)
                 elif hcl_object == hcl_objects[1]:
-                    shell_args = [                                                 
-                        'terraform',                                               
-                        'state',                                                   
-                        'mv',                                                      
-                        f'module.{hcl_object_type}',                             
+                    shell_args = [
+                        'terraform',
+                        'state',
+                        'mv',
+                        f'module.{hcl_object_type}',
                         f'module.{module}.module.{hcl_object_type}']
                     terraform_mv(shell_args)
 
 
 if __name__ == "__main__":
-    args = parseargs() 
+    args = parseargs()
     try:
         modularize(args.resources_file, args.module)
     except FileNotFoundError:
