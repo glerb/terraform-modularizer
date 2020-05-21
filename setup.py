@@ -1,9 +1,9 @@
-import setuptools
+from setuptools import setup, find_packages
 
 with open('README.md', 'r') as fh:
     long_description = fh.read()
 
-setuptools.setup(
+setup(
     name='terraform_modularizer',
     version='0.1.0a1',
     author='P Z',
@@ -12,13 +12,12 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/scribd/terraform-modularizer',
-    packages=setuptools.find_packages(),
+    packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
     ],
     keywords='terraform module',
-    packages=find_packages('src'),
     install_requires=['python-hcl2'],
     python_requires='>=3.8',
 )
