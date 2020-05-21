@@ -4,7 +4,7 @@ with open('README.md', 'r') as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name='terraform-modularizer',
+    name='terraform_modularizer',
     version='0.1.0a1',
     author='P Z',
     author_email='',
@@ -21,5 +21,4 @@ setuptools.setup(
     packages=find_packages('src'),
     install_requires=['python-hcl2'],
     python_requires='>=3.8',
-    package_data={'terraform-modularizer': ['help/*']}
 )
