@@ -8,8 +8,9 @@ class TestTerraformModularizerMethods(unittest.TestCase):
 
     def test_parsehcl(self):
         """check that parsehcl fails when the file does not exist"""
-        with self.assertRaises(FileNotFoundError) as e:
+        with self.assertRaises(SystemExit) as e:
             terraform_modularizer.parsehcl('nonexistent_file.tf')
+        self.assertEqual(e.exception.code, 1)
 
 if __name__ == '__main__':
     unittest.main()
