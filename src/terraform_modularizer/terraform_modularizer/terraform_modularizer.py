@@ -1,15 +1,27 @@
-#!/usr/local/opt/python@3.8/bin/python3
-
 import sys
 import argparse
 import subprocess
 import hcl2
-from help_messages import help_messages
+from terraform_modularizer.help_messages import help_messages
 from lark.exceptions import UnexpectedToken
 
 # ANSI escape sequences for foreground text colors
 red = '\033[31m'
 nocolor = '\033[0m'
+"""shell_args_resource = [
+    'terraform',
+    'state',
+    'mv',
+    f'{hcl_object_type}.{resource_name}',
+    f'module.{module}',
+    ]
+shell_args_module = [
+    'terraform',
+    'state',
+    'mv',
+    f'module.{hcl_object_type}',
+    f'module.{module}.module.{hcl_object_type}',
+    ]"""
 
 
 def parseargs():
@@ -96,7 +108,6 @@ def modularize(resources_file, module):
                         f'module.{hcl_object_type}',
                         f'module.{module}.module.{hcl_object_type}']
                     terraform_mv(shell_args)
-
 
 if __name__ == "__main__":
     args = parseargs()
