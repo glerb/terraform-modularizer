@@ -12,7 +12,7 @@ class TestTerraformModularizerMethods(unittest.TestCase):
     def test_parsehcl_unexpectedtoken(self):
         """parsehcl fails when the file contains invalid terraform"""
         with self.assertRaises(SystemExit):
-            parsehcl('tests/test.tf')
+            parsehcl('test/test.tf')
 
 if __name__ == '__main__':
     unittest.main()
