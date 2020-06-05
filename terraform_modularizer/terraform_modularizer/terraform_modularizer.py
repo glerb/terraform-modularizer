@@ -108,10 +108,3 @@ def modularize(resources_file, module):
                         f'module.{hcl_object_type}',
                         f'module.{module}.module.{hcl_object_type}']
                     terraform_mv(shell_args)
-
-if __name__ == "__main__":
-    args = parseargs()
-    try:
-        modularize(args.resources_file, args.module)
-    except FileNotFoundError:
-        print(help_messages['no_cli'])
