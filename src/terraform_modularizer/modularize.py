@@ -1,4 +1,5 @@
 import sys
+sys.path.append('./src')
 import argparse
 import subprocess
 import hcl2
@@ -8,21 +9,6 @@ from lark.exceptions import UnexpectedToken
 # ANSI escape sequences for foreground text colors
 red = '\033[31m'
 nocolor = '\033[0m'
-"""shell_args_resource = [
-    'terraform',
-    'state',
-    'mv',
-    f'{hcl_object_type}.{resource_name}',
-    f'module.{module}',
-    ]
-shell_args_module = [
-    'terraform',
-    'state',
-    'mv',
-    f'module.{hcl_object_type}',
-    f'module.{module}.module.{hcl_object_type}',
-    ]"""
-
 
 def parseargs():
     """Parses command line arguments"""
