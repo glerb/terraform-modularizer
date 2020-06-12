@@ -84,7 +84,7 @@ def modularize(resources_file, module):
                             'state',
                             'mv',
                             f'{hcl_object_type}.{resource_name}',
-                            f'module.{module}']
+                            f'module.{module}.{hcl_object_type}.{resource_name}']
                         terraform_mv(shell_args)
                 elif hcl_object == hcl_objects[1]:
                     shell_args = [

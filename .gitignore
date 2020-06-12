@@ -1,3 +1,6 @@
 __pycache__/
+build/
+dist/
+src/terraform_modularizer.egg-info/
 *.py[cod]
 *.swp
