@@ -50,7 +50,7 @@ def terraform_mv(shell_args):
     try:
         print(subprocess.run(
             args=shell_args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-            timeout=10, check=True, text=True).stdout)
+            timeout=60, check=True, text=True).stdout)
         return 1
     except subprocess.CalledProcessError as e:
         print(
@@ -84,7 +84,7 @@ def modularize(resources_file, module):
                             'state',
                             'mv',
                             f'{hcl_object_type}.{resource_name}',
-                            f'module.{module}']
+                            f'module.{module}.{hcl_object_type}.{resource_name}']
                         terraform_mv(shell_args)
                 elif hcl_object == hcl_objects[1]:
                     shell_args = [
