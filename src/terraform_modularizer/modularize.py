@@ -50,7 +50,7 @@ def terraform_mv(shell_args):
     try:
         print(subprocess.run(
             args=shell_args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-            timeout=10, check=True, text=True).stdout)
+            timeout=60, check=True, text=True).stdout)
         return 1
     except subprocess.CalledProcessError as e:
         print(
